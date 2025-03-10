@@ -15,6 +15,37 @@
     }
 }
 
+class DoorMachine
+{
+    private enum State { Terkunci, Terbuka }
+    private State currentState;
+
+    public DoorMachine()
+    {
+        currentState = State.Terkunci;
+        Console.WriteLine("Pintu terkunci");
+    }
+
+    public void BukaPintu()
+    {
+        if (currentState == State.Terkunci)
+        {
+            currentState = State.Terbuka;
+            Console.WriteLine("Pintu tidak terkunci");
+        }
+    }
+
+    public void KunciPintu()
+    {
+        if (currentState == State.Terbuka)
+        {
+            currentState = State.Terkunci;
+            Console.WriteLine("Pintu terkunci");
+        }
+    }
+}
+
+
 class Program
 {
     static void Main()
@@ -28,6 +59,11 @@ class Program
             Console.WriteLine($"Kode Pos untuk {kelurahan}: {kode}");
         else
             Console.WriteLine("Kode pos tidak ditemukan");
+
+        DoorMachine pintu = new DoorMachine();
+        Console.WriteLine("Menjalankan simulasi perubahan state pintu:");
+        pintu.BukaPintu();
+        pintu.KunciPintu();
 
     }
 }
